@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL Shortener</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      .center {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+      .column {
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="center">URL Shortener</h1>
+    <div class="center column">
+      <form method="POST" action="/url">
+        <label>enter URL</label>
+        <input type="text" placeholder="example.com" name="url" />
+        <button type="submit">Generate</button>
+      </form>
+      <div>
+        <% if (locals.id) { %>
+        <em
+          >short URL:
+          <a href="<%= 'http://localhost:8000/url/'+id %>" target="_blank"
+            >http://localhost:8000/url/<%= id %></a
+          ></em
+        >
+        <% } %>
+      </div>
+    </div>
+    <div class="center" style="margin-top: 30px">
+      <table>
+        <thead>
+          <th>#</th>
+          <th>short URL</th>
+          <th>redirect URL</th>
+          <th>clicks</th>
+        </thead>
+        <tbody>
+          <% urls.forEach((url, index) => { %>
+          <tr>
+            <td><%= index+1 + ". " %></td>
+            <td><%= url.shortUrl %></td>
+            <td><%= url.redirectUrl %></td>
+            <td><%= url.analytics.length %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
