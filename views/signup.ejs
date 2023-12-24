@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL Shortener</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      .center {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+      .column {
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="center">Signup</h1>
+    <div class="center column">
+      <form method="POST" action="/user">
+        <label>name</label>
+        <input type="text" placeholder="John Doe" name="name" />
+        <label>email</label>
+        <input type="text" placeholder="john@example.com" name="email" />
+        <label>password</label>
+        <input type="text" placeholder="****" name="password" />
+        <div class="center" style="margin-top: 30px">
+          <button type="submit">Signup</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

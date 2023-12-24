@@ -14,14 +14,16 @@ const handleCreateShortUrl = async (req, res) => {
     shortUrl: shortUrl,
     redirectUrl: req.body.url,
     analytics: [],
+    createdBy: req.user._id,
   });
 
-  const allUrls = await URL.find({});
+  const allUrls = await URL.find({ createdBy: req.user._id });
 
   return res.render("home", {
     id: shortUrl,
     urls: allUrls,
   });
+  // return res.redirect("/");
 };
 
 const handleRedirectUrl = async (req, res) => {
@@ -35,7 +37,7 @@ const handleRedirectUrl = async (req, res) => {
       },
     }
   );
-  console.log(result);
+  // console.log(result);
   return res.redirect(result.redirectUrl);
 };
 
